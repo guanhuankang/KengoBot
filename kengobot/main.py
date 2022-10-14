@@ -1,5 +1,5 @@
-from certificateToken import certificateToken
-from flask import Flask, redirect, url_for, request
+from kengobot.certificateToken import certificateToken
+from flask import Flask, request
 
 app = Flask(__name__)
 
@@ -16,4 +16,4 @@ def wx():
     return certificateToken(signature, timestamp, nonce, echostr)
 
 if __name__ == '__main__':
-    app.run(debug = False)
+    app.run(debug = False, host="0.0.0.0")
