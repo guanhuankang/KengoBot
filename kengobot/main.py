@@ -1,30 +1,20 @@
-from certificateToken import certificateToken
+from auth import auth
 from flask import Flask, request
-
-'''
-    AppSecret: 849ae7804e7facd47e9c2d4e4fc861c9
-    AppId: wxb19f49d8dfe1ceb1
-'''
+from hanlder import Hanlder
 
 app = Flask(__name__)
 
 @app.route('/')
 def root():
-    return 'welcome to Flask'
+    return 'welcome to KengoBot'
 
 @app.route('/wx', methods=["POST", "GET"])
 def wx():
-    ## authurtification
-    signature = request.args.get("signature", "")
-    timestamp = request.args.get("timestamp", "")
-    nonce = request.args.get("nonce", "")
-    openid = request.args.get("openid", "")
+    openid = auth(request.args)
+    if openid=="": return ""
 
-    if not certificateToken(signature, timestamp, nonce):
-        return "auth_fail"
-
-    print(request.get_data())
-    return "success"
+    handler = Hanlder(request)
+    return handler.getSimpleResponse()
 
 if __name__ == '__main__':
     app.run(debug = False, host="0.0.0.0", port=80)
