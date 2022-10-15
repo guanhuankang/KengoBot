@@ -8,7 +8,8 @@ class Reciever:
         data = xmltodict.parse(request.get_data())["xml"]
         logging.info("receive "+str(data))
 
-        self.api = API(DB())
+        self.db = DB()
+        self.api = API(self.db)
         self.data = data
         self.userName = data["FromUserName"]
         self.hostName = data["ToUserName"]
