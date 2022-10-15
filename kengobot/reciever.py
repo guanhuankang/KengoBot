@@ -66,7 +66,7 @@ class Reciever:
         return self.msgType=="link"
 
     def loadLinkMsg(self):
-        if self.isLocationMsg():
+        if self.isLinkMsg():
             self.title = self.data["Title"]
             self.desc = self.data["Description"]
             self.url = self.data["Url"]
