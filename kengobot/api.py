@@ -25,6 +25,7 @@ class API:
         }
         res = self.Get(url, params)
         self.logDown(res)
+        res = res.json()
         return res["access_token"], res["expires_in"]
 
     def downloadMedia(self, mediaId):
