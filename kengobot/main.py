@@ -1,4 +1,4 @@
-import logging
+import logging, os
 logging.basicConfig(level=logging.INFO)
 
 from auth import auth
@@ -7,6 +7,7 @@ from reciever import Reciever
 from response import Response
 
 app = Flask(__name__)
+HOME_DIR = os.path.abspath(os.path.dirname(__file__))
 
 @app.route('/')
 def root():
