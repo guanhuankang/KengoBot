@@ -1,3 +1,6 @@
+import logging
+logging.basicConfig(level=logging.INFO)
+
 from auth import auth
 from flask import Flask, request
 from reciever import Reciever

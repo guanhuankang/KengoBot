@@ -1,4 +1,5 @@
 import hashlib
+import logging
 
 def certificateToken(signature, timestamp, nonce):
     token = "KengoBotToKennnn"
@@ -8,7 +9,7 @@ def certificateToken(signature, timestamp, nonce):
     for x in lst:
         sha1.update(x)
     hashcode = sha1.hexdigest()
-    print("certificateToken/GET func: hashcode, signature: ", hashcode, signature)
+    logging.info("auth:{} signature:{}".format("pass" if hashcode==signature else "fails", signature))
     return hashcode == signature
 
 def auth(args):
