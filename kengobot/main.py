@@ -39,7 +39,7 @@ def wx():
         img.save(filepath)
         media_id = api.uploadImage(filepath)
         logging.info("new media_id:{}, local_filePath:{}".format(media_id, filepath))
-        return response.ImageMsg(media_id)
+        return response.imageMsg(media_id)
     return response.textMsg("unsupported msg type - {}".format(data.msgType))
 
 if __name__ == '__main__':

@@ -14,7 +14,7 @@ class Response:
                  createTime=self.data.createTime,
                  text = text)
 
-    def ImageMsg(self, mediaId):
+    def imageMsg(self, mediaId):
         return """<xml>
     <ToUserName><![CDATA[{userName}]]></ToUserName>
     <FromUserName><![CDATA[{hostName}]]></FromUserName>
