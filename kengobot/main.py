@@ -24,6 +24,8 @@ def wx():
     api = API(db)
     data = Reciever(request)
     response = Response(data)
+    if data.msgIsRepeat():
+        return "success"
 
     if data.isTextMsg():
         if data.content=="openid":
@@ -36,7 +38,7 @@ def wx():
         logging.info("save to local filepath:{}".format(filepath))
         img.save(filepath)
         media_id = api.uploadImage(filepath)
-        logging.log("new media_id:{}, local_filePath:{}".format(media_id, filepath))
+        logging.info("new media_id:{}, local_filePath:{}".format(media_id, filepath))
         return response.ImageMsg(media_id)
     return response.textMsg("unsupported msg type - {}".format(data.msgType))
 

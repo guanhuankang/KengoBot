@@ -18,6 +18,15 @@ class Reciever:
         self.msgType = data["MsgType"]
         self.loadMsg()
 
+    def msgIsRepeat(self):
+        lastMsgId = self.db.queryAll("select msgid from msg_queue where openid='{}'")
+        lastMsgId = lastMsgId[0][0] if len(lastMsgId)>0 else None
+        if lastMsgId==self.msgId:
+            return True
+        self.db.execute("delete from msg_queue where openid='{}'".format(self.userName))
+        self.db.execute("insert into msg_queue values ('{}','{}') ".format(self.userName, self.msgId))
+        return False
+
     def loadMsg(self):
         self.loadTextMsg()
         self.loadImageMsg()
