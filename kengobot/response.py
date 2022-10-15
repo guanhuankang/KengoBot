@@ -20,7 +20,9 @@ class Response:
     <FromUserName><![CDATA[{hostName}]]></FromUserName>
     <CreateTime>{createTime}</CreateTime>
     <MsgType><![CDATA[image]]></MsgType>
-    <MediaId><![CDATA[{mediaId}]]></MediaId>
+    <Image>
+        <MediaId><![CDATA[{mediaId}]]></MediaId>
+    </Image>
 </xml>""".format(userName=self.data.userName,
                  hostName=self.data.hostName,
                  createTime=self.data.createTime,
