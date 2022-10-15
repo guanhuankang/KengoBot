@@ -1,0 +1,1 @@
+dbPath = "database/db.sq3"

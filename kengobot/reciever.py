@@ -1,10 +1,14 @@
 import xmltodict
 import logging
+from api import API
+from db import DB
 
 class Reciever:
     def __init__(self, request):
         data = xmltodict.parse(request.get_data())["xml"]
         logging.info("receive "+str(data))
+
+        self.api = API(DB())
         self.data = data
         self.userName = data["FromUserName"]
         self.hostName = data["ToUserName"]
@@ -35,6 +39,8 @@ class Reciever:
         if self.isImageMsg():
             self.mediaId = self.data["MediaId"]
             self.picUrl = self.data["PicUrl"]
+            logging.info("downloading image, media id:{}".format(self.mediaId))
+            self.content = self.api.downloadImage(self.mediaId)
 
     def isVoiceMsg(self):
         return self.msgType=="voice"

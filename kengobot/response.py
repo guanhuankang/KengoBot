@@ -14,5 +14,14 @@ class Response:
                  createTime=self.data.createTime,
                  text = text)
 
-    def ImageMsg(self):
-        pass
+    def ImageMsg(self, mediaId):
+        return """<xml>
+    <ToUserName><![CDATA[{userName}]]></ToUserName>
+    <FromUserName><![CDATA[{hostName}]]></FromUserName>
+    <CreateTime>{createTime}</CreateTime>
+    <MsgType><![CDATA[image]]></MsgType>
+    <MediaId><![CDATA[{mediaId}]]></MediaId>
+</xml>""".format(userName=self.data.userName,
+                 hostName=self.data.hostName,
+                 createTime=self.data.createTime,
+                 mediaId = mediaId)
