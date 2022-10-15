@@ -1,6 +1,7 @@
 from auth import auth
 from flask import Flask, request
-from hanlder import Hanlder
+from reciever import Reciever
+from response import Response
 
 app = Flask(__name__)
 
@@ -13,8 +14,9 @@ def wx():
     openid = auth(request.args)
     if openid=="": return ""
 
-    handler = Hanlder(request)
-    return handler.getSimpleResponse()
+    data = Reciever(request)
+    response = Response(data)
+    return response.textMsg(text=data.content if data.isTextMsg() else str(data.msgType))
 
 if __name__ == '__main__':
     app.run(debug = False, host="0.0.0.0", port=80)
