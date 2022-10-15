@@ -1,9 +1,10 @@
 import xmltodict
-from response import Response
+import logging
 
 class Reciever:
     def __init__(self, request):
         data = xmltodict.parse(request.get_data())["xml"]
+        logging.info("receive "+str(data))
         self.data = data
         self.userName = data["FromUserName"]
         self.hostName = data["ToUserName"]
