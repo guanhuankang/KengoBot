@@ -1,9 +1,11 @@
 import sqlite3
 from api import API
 import time
+import os
+HOME_DIR = os.path.abspath(os.path.dirname(__file__))
 
 def update():
-    conn = sqlite3.connect("db/apptoken.sq3")
+    conn = sqlite3.connect(os.path.join(HOME_DIR, "db/apptoken.sq3"))
     appid, appsecret = conn.execute("select appid, appsecret from token limit 1").fetchone()
     token, expire_in = API().getToken(appid, appsecret)
     if isinstance(token, type(None)):
