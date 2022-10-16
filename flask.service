@@ -1,0 +1,11 @@
+[Unit]
+Description=KengoBot Flask Service
+
+[Service]
+ExecStart=/bin/python3 /root/KengoBot/kengobot/main.py
+Restart=on-failure
+Type=simple
+PermissionsStartOnly=true
+
+[Install]
+WantedBy=multi-user.target

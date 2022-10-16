@@ -1,0 +1,11 @@
+[Unit]
+Description=KengoBot WX Token Update Service 
+
+[Service]
+ExecStart=/bin/python3 /root/KengoBot/kengobot/tokenservice.py
+Restart=on-failure
+Type=simple
+PermissionsStartOnly=true
+
+[Install]
+WantedBy=multi-user.target
